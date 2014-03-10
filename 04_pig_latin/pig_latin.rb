@@ -14,30 +14,30 @@ def beginning(word)
     loop do 
         beginning << word[i]
         i+=1
+        beginning << word[i] if word[i-1] == "q"
         break if !consonant?(word[i])
     end
-    puts "beginning = #{beginning}"
     beginning
 end
 
 def translate(text)
-    vowels = ["a", "e", "i", "o", "u"]
-    if (vowels.include?(text[0]))
-        puts("hit case 1")
-        text+"ay"
-    else
-        beginning = beginning(text)
-        index = beginning.size
-        puts "text = #{text}"
-        if text[index-1] =~ /[A-Z]/
-            puts("hit case 2")
-            text[index].upcase + text[index+1..-1] + beginning + "ay"
-         else
-            puts("hit case 3")
-            text[index..-1] + beginning.join("") + "ay"
+    input = text.split(" ")
+    result = []
+    input.each do |word|
+        vowels = ["a", "e", "i", "o", "u"]
+        if (vowels.include?(word[0]))
+            result << word+"ay"
+        else
+            beginning = beginning(word)
+            index = beginning.size
+            if word[index-1] =~ /[A-Z]/
+                result << word[index].upcase + word[index+1..-1] + beginning + "ay"
+            else
+                result << word[index..-1] + beginning.join("") + "ay"
+            end
         end
+
     end
+    result.join(" ")
 end
 
-
-translate("apple")
