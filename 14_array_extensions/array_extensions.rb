@@ -2,7 +2,6 @@ class Array
  
     def sum
         if self == nil then 0 else
-            puts "hit case 2"
             self.inject(0) { |sum, i| sum + i }
         end
     end
