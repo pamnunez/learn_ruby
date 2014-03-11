@@ -38,6 +38,18 @@ class Temperature
     end
 end
 
-puts Temperature.new(:c => 37).in_fahrenheit
+class Celsius < Temperature
+    def initialize(input)
+        @c = input
+    end
+
+end
+
+class Fahrenheit < Temperature
+    def initialize(input)
+        @f = input
+    end
+
+end
 
 
